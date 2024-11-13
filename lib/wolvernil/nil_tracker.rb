@@ -1,4 +1,4 @@
-require 'singleton'
+require "singleton"
 
 module Wolvernil
   class NilTracker
@@ -10,13 +10,13 @@ module Wolvernil
       @methods_list ||= {}
     end
 
-    def log(method, caller_lines, *args,  &block)
+    def log(method, caller_lines, *args, &block)
       error_message = "=====> Trying to call method **#{method}** in `nil` (NoMethodError)"
 
       puts error_message
       puts "=====> Caller: (stacktrace)"
       puts caller.take(5).join("\n")
-      puts "=====> args: #{args}" if args&.size > 0
+      puts "=====> args: #{args}" if args&.size&.> 0
       puts "=====> block: #{block.source}" if block
 
       create_method(method, args, block)
@@ -31,10 +31,13 @@ module Wolvernil
       end
     end
 
-    def store_method_info(method, caller_lines, *args,  &block)
+    def store_method_info(method, caller_lines, *args, &block)
       new_block = args[1].source if args[1]&.class == Proc
-      methods_list[method] =  {
-        args:, block: new_block, caller_lines:, timestamp: Time.now
+      methods_list[method] = {
+        args: args,
+        block: new_block,
+        caller_lines: caller_lines,
+        timestamp: Time.now
       }
     end
   end
