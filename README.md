@@ -1,8 +1,29 @@
 # Wolvernil
 
-TODO: Delete this and the text below, and describe your gem
+Don't use in production!!
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/wolvernil`. To experiment with that code, run `bin/console` for an interactive prompt.
+Wolvernil allows us to track `nil` instances in our code.  It's an experiment for a talk at rubyconf 2024.
+
+
+## Usage
+
+```ruby
+	nil.extend(wolvernil)
+
+	data = nil
+	data.help1("hello world!")
+
+	Wolvernil.method_list
+	>
+		{:help1=>
+	  {:args=>[[["hello world!"], nil], nil],
+	   :block=>nil,
+	   :caller_lines=>
+	    "(irb):6:in <top (required)>",
+	   :timestamp=>2024-11-13 08:49:34.73899 -0800
+	 }
+
+```
 
 ## Installation
 
@@ -19,10 +40,6 @@ If bundler is not being used to manage dependencies, install the gem by executin
 ```bash
 gem install UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
 ```
-
-## Usage
-
-TODO: Write usage instructions here
 
 ## Development
 
