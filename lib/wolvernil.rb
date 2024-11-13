@@ -23,7 +23,7 @@ module Wolvernil
     false
   end
 
-    def raise_exception?
+  def raise_exception?
     nil_tracker.raise_exception
   end
 
