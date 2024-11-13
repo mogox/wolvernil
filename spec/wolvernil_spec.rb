@@ -5,7 +5,10 @@ RSpec.describe Wolvernil do
     expect(Wolvernil::VERSION).not_to be nil
   end
 
-  it "does something useful" do
-    expect(false).to eq(true)
+  it "does something experimental" do
+    methods_size = nil.methods.count
+    nil.extend(Wolvernil)
+    new_methods_size = nil.methods.count
+    expect(new_methods_size > methods_size).to be true
   end
 end
